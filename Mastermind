@@ -1,0 +1,29 @@
+import random
+
+print("Mastermind")
+print("You are a KGB agent trying to hack into a highly-secured vault in Seychelles. You must try to find a 4-digit passcode which will allow you to access the vault.")
+print("KGB intelligence will tell you when you have a correct digit, but you will not know which digit is correct. You only have 10 guesses until the system locks you out.")
+print("Begin.")
+
+randomCode = random.sample(range(10), 4)
+
+for i in range(len(randomCode)):
+    randomCode[i] = str(randomCode[i])
+
+upCount = 0
+numberTries = 0
+
+while upCount != 4:
+    if numberTries == 10:
+        print("The system locked you out. Mission failed.")
+    upCount = 0
+    playerGuess = list(input("Enter your guess: "))
+    if len(playerGuess) != 4:
+        print("KGB intelligence intercepts you: 'Hey, that's not 4 digits.' Try again.")
+    else:
+        numberTries +=1
+        for i in range(0, 4):
+            if randomCode[i] == playerGuess[i]:
+                upCount +=1
+        print(str(upCount) + " of your guesses were correct!")
+print("We're in. Another successful mission. Good job agent.")
